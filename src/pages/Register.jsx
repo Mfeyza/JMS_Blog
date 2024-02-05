@@ -7,34 +7,18 @@ import Box from "@mui/material/Box"
 import { Link } from "react-router-dom"
 import RegisterForm, { registerSchema } from "../components/RegisterForm"
 import { Formik } from "formik"
-
-
+import {  useDispatch } from "react-redux"
+import {register} from "../thunks/thunk"
+import {  useNavigate } from "react-router-dom";
 const Register = () => {
 
-
+const dispatch=useDispatch()
+const navigate = useNavigate();
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="100%" sx={{backgroundColor:"black"}}>
       
 
         <Grid >
-          <Avatar
-            sx={{
-              backgroundColor: "secondary.light",
-              m: "auto",
-              width: 40,
-              height: 40,
-            }}
-          >
-            <LockIcon size="30" />
-          </Avatar>
-          <Typography
-            variant="h4"
-            align="center"
-            mb={2}
-            color="secondary.light"
-          >
-            Register
-          </Typography>
 
           <Formik
             initialValues={{
@@ -43,23 +27,20 @@ const Register = () => {
               lastName: "",
               email: "",
               password: "",
+              city:"",
+              image:"",
+              bio:""
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-            
+              console.log(values)
+              dispatch(register({values,navigate}))
               actions.resetForm()
               actions.setSubmitting(false)
             }}
             component={(props) => <RegisterForm {...props} />}
           ></Formik>
 
-          <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Link to="/">Do you have an account?</Link>
-          </Box>
-        </Grid>
-
-        <Grid item xs={0} sm={7} md={6}>
-         
         </Grid>
   
     </Container>

@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import Login  from "../pages/Login";
 import Register  from "../pages/Register";
 import Navbar from "../components/Navbar";
+import Blogs from "../pages/Blogs";
+import PrivateRouter from "./PrivateRouter";
 
 const AppRouter = () => {
   return (
@@ -13,9 +15,9 @@ const AppRouter = () => {
       <Route path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register/>} />
-      <Route>
-
-      </Route>
+      <Route path="/blogs" element={<PrivateRouter />}>
+    <Route path="/blogs" element={<Blogs/>}  />
+    </Route>
       </Routes>
     </Router>
   );

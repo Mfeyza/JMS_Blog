@@ -1,32 +1,47 @@
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import TextField from "@mui/material/TextField"
-import { Form } from "formik"
-import { object, string } from "yup"
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import { object, string } from "yup";
+import { Stack } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import img from "../assets/3b22bd37e20ce993d52e4c3b242b73a3.gif";
+import img1 from "../assets/—Pngtree—unique tree with roots useful_8831990.png";
 
 export const registerSchema = object({
   username: string()
-    .max(20, "Kullanıcı adı 10 karakterden az olmalıdır.")
-    .required("Kullanıcı adı zorunludur"),
+    .max(20, "Username must be less than 20 characters.")
+    .required("Username is required"),
   firstName: string()
-    .max(20, "İsim 20 karakterden az olmalıdır.")
-    .required("İsim zorunludur"),
+    .max(20, "First name must be less than 20 characters.")
+    .required("First name is required"),
   lastName: string()
-    .max(20, "Soyisim 30 karakterden az olmalıdır.")
-    .required("Soyisim zorunludur"),
+    .max(20, "Last name must be less than 30 characters.") // Bu satırda bir tutarsızlık var. Max 20 yazılmış, fakat mesaj 30 diyor. Doğrusu hangisi olmalı?
+    .required("Last name is required"),
 
   email: string()
-    .email("Lütfen geçerli bir email giriniz.")
-    .required("Email zorunludur"),
+    .email("Please enter a valid email.")
+    .required("Email is required"),
   password: string()
-    .required("Şifre zorunludur")
-    .min(8, "Şifre en az 8 karakter olmalıdır")
-    .max(20, "Şifre en fazla 20 karakter olmalıdır")
-    .matches(/\d+/, "Şifre bir sayı içermelidir")
-    .matches(/[a-z]/, "Şifre bir küçük harf içermelidir")
-    .matches(/[A-Z]/, "Şifre bir büyük harf içermelidir")
-    .matches(/[!/[@$!%*?&]+/, "Şifre bir özel karakter içermelidir"),
-})
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters long")
+    .max(20, "Password must be no more than 20 characters long")
+    .matches(/\d+/, "Password must contain a number")
+    .matches(/[a-z]/, "Password must contain a lowercase letter")
+    .matches(/[A-Z]/, "Password must contain an uppercase letter")
+    .matches(/[!/[@$!%*?&]+/, "Password must contain a special character"),
+  city: string()
+    .max(20, "City must be less than 20 characters.")
+    .required("City is required"),
+  bio: string()
+    .max(50, "Bio must be less than 50 characters.")
+    .required("Bio is required"),
+});
+const defaultTheme = createTheme();
 
 const RegisterForm = ({
   values,
@@ -34,151 +49,236 @@ const RegisterForm = ({
   errors,
   touched,
   handleBlur,
+  handleSubmit,
 }) => {
+  const navigate = useNavigate();
   return (
     <Stack
-    justifyContent={"space-between"}
-    flexDirection={"row"}
-    color={"white"}
-    sx={{ backgroundColor: "black",Width:"100%"}}
-    minHeight={"100vh"}
-    flexWrap={"wrap"}
-    
+      justifyContent={"space-between"}
+      flexDirection={"row"}
+      color={"white"}
+      sx={{ backgroundColor: "black", Width: "100%" }}
+      minHeight={"100vh"}
+      flexWrap={"wrap"}
     >
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs" flex={1} >
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            flex:1,
-            minWidth: '100%'
-          }}
-        >
-          <img src={img} style={{ m: 1, bgcolor: "secondary.main" ,height:"4rem", Width:"4rem" }}>
-            
-          </img>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main" maxWidth="xs" flex={1}>
+          <CssBaseline />
           <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              flex: 1,
+            }}
           >
-                <TextField
-            className="loginInput"
-              label="User Name"
-              name="username"
-              id="userName"
-              type="text"
-              variant="outlined"
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.username && Boolean(errors.username)}
-              helperText={errors.username}
-            />
-            <Box sx={{display:"flex" ,justifyContent:"space-between"}}>
-            <TextField
-            className="loginInput"
-              label="First Name"
-              name="firstName"
-              id="firstName"
-              type="text"
-              variant="outlined"
-              value={values.firstName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.firstName && Boolean(errors.firstName)}
-              helperText={errors.firstName}
-            />
-            <TextField
-            className="loginInput"
-              label="Last Name"
-              name="lastName"
-              id="lastName"
-              type="text"
-              variant="outlined"
-              value={values.lastName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.lastName && Boolean(errors.lastName)}
-              helperText={errors.lastName}
-            />
-            </Box>
-            <TextField
-            className="loginInput"
-              label="Email"
-              name="email"
-              id="email"
-              type="email"
-              variant="outlined"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.email && Boolean(errors.email)}
-              helperText={errors.email}
-            />
-            <TextField
-            className="loginInput"
-              label="password"
-              name="password"
-              id="password"
-              type="password"
-              variant="outlined"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.password && Boolean(errors.password)}
-              helperText={errors.password}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
+            <img
+              src={img1}
+              style={{
+                m: 1,
+                bgcolor: "secondary.main",
+                height: "4rem",
+                Width: "4rem",
+              }}
+            ></img>
+
+            <Typography component="h1" variant="h5">
+              Sign Up
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
               sx={{
-                mt: 3,
-                mb: 2,
-                backgroundColor: "green",
-                color: "white",
-                "&:hover": {
-                  backgroundColor: "darkgreen",
-                },
+                mt: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
               }}
             >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <TextField
+                className="loginInput"
+                label="User Name"
+                name="username"
+                id="userName"
+                type="text"
+                variant="outlined"
+                value={values.username}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.username && Boolean(errors.username)}
+                helperText={errors.username}
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+              />
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+              >
+                <TextField
+                  className="loginInput"
+                  label="First Name"
+                  name="firstName"
+                  id="firstName"
+                  type="text"
+                  variant="outlined"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.firstName && Boolean(errors.firstName)}
+                  helperText={errors.firstName}
+                  InputLabelProps={{
+                    style: { color: "white" },
+                  }}
+                />
+                <TextField
+                  className="loginInput"
+                  label="Last Name"
+                  name="lastName"
+                  id="lastName"
+                  type="text"
+                  variant="outlined"
+                  value={values.lastName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.lastName && Boolean(errors.lastName)}
+                  helperText={errors.lastName}
+                  InputLabelProps={{
+                    style: { color: "white" },
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+              >
+                <TextField
+                  className="loginInput"
+                  label="Email"
+                  name="email"
+                  id="email"
+                  type="email"
+                  variant="outlined"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.email && Boolean(errors.email)}
+                  helperText={errors.email}
+                  InputLabelProps={{
+                    style: { color: "white" },
+                  }}
+                />
+                <TextField
+                  className="loginInput"
+                  label="password"
+                  name="password"
+                  id="password"
+                  type="password"
+                  variant="outlined"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.password && Boolean(errors.password)}
+                  helperText={errors.password}
+                  InputLabelProps={{
+                    style: { color: "white" },
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+              >
+                <TextField
+                  className="loginInput"
+                  label="City"
+                  name="city"
+                  type="text"
+                  variant="outlined"
+                  value={values.city}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.city && Boolean(errors.city)}
+                  helperText={errors.city}
+                  InputLabelProps={{
+                    style: { color: "white" },
+                  }}
+                />
+                <TextField
+                  className="loginInput"
+                  accept="https://"
+                  name="image"
+                  type="text"
+                  label="İmage"
+                  value={values.image}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  InputLabelProps={{
+                    style: { color: "white" },
+                  }}
+                />
+              </Box>
+              <TextField
+                className="loginInput"
+                label="Bio"
+                name="bio"
+                type="text"
+                variant="outlined"
+                value={values.bio}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.bio && Boolean(errors.bio)}
+                helperText={errors.bio}
+                InputLabelProps={{
+                  style: { color: "white" },
+                }}
+                fullWidth
+                multiline
+                sx={{ mt: 2 }}
+              />
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: "green",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "darkgreen",
+                  },
+                }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item>
+                  <Typography
+                    onClick={() => {
+                      navigate("/Register");
+                    }}
+                    variant="body2"
+                    sx={{ cursor: "pointer" }}
+                  >
+                    Already have an account? Sign In
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Typography onClick={()=>{navigate('/Register')}} variant="body2" sx={{cursor:"pointer"}}>
-                  Don't have an account? Sign Up
-                </Typography>
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
-    <Box flex={1} display={"flex"} justifyContent={"center"} style={{ maxWidth: '100%', height: 'auto' }}>
-      <img src={img1} />
-    </Box>
+        </Container>
+      </ThemeProvider>
+      <Box
+        flex={1}
+        display={"flex"}
+        justifyContent={"center"}
+        style={{ maxWidth: "100%", height: "auto" }}
+      >
+        <img src={img} />
+      </Box>
     </Stack>
-  )
-}
+  );
+};
 
-export default RegisterForm
-
+export default RegisterForm;
