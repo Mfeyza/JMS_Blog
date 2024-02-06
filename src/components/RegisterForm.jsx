@@ -205,9 +205,8 @@ const RegisterForm = ({
                 />
                 <TextField
                   className="loginInput"
-                  accept="https://"
                   name="image"
-                  type="text"
+                  type="url"
                   label="İmage"
                   value={values.image}
                   onChange={handleChange}

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import RegisterForm, { registerSchema } from "../components/RegisterForm"
 import { Formik } from "formik"
 import {  useDispatch } from "react-redux"
-import {register} from "../thunks/thunk"
+import {register} from "../thunks/auththunk"
 import {  useNavigate } from "react-router-dom";
 const Register = () => {
 

@@ -1,6 +1,6 @@
 
 import {createSlice} from "@reduxjs/toolkit"
-import {login, register,logout} from "../thunks/thunk"
+import {login, register,logout} from "../thunks/auththunk"
 
 
 
@@ -12,6 +12,7 @@ const authSlice=createSlice({
         loading:false,
         error:false,
         token:"",
+        image:"",
     },
     reducers:{
        
@@ -26,6 +27,7 @@ const authSlice=createSlice({
             state.loading=false
             state.error=false
             state.user=payload?.data.user.username
+            state.image=payload?.data.user.image
             state.token=payload?.data.token
         })
         .addCase(login.rejected,(state)=>{
@@ -43,6 +45,7 @@ const authSlice=createSlice({
         state.loading = false;
         state.error = false;
         state.user = payload?.data.data.username;
+        state.image=payload?.data.data.image
         state.token = payload?.data.token; 
       })
       .addCase(register.rejected, (state, { payload }) => {

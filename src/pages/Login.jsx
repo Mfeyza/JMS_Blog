@@ -13,7 +13,7 @@ import LoginForm from "../components/LoginForm"
 import { useDispatch} from "react-redux";
 import { object, string } from "yup"
 import { Formik } from "formik"
-import { login } from "../thunks/thunk"
+import { login } from "../thunks/auththunk"
 const defaultTheme = createTheme();
 
 export default function Login() {
@@ -73,6 +73,7 @@ export default function Login() {
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
+              console.log(values)
               dispatch(login({ values, navigate }))
               actions.resetForm()
               actions.setSubmitting(false) 
