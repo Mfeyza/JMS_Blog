@@ -27,7 +27,7 @@ const Home = () => {
       <Typography marginLeft={"1rem"}>
       Explore in-depth content on any topic from stories, thoughts, and expertise shared by writers."
       </Typography>
-      <Button sx={{color:" rgb(22, 165, 98)"}} onClick={handleClick}>
+      <Button sx={{color:" #3586ff"}} onClick={handleClick}>
         
       Let's Rock and Roll!
 

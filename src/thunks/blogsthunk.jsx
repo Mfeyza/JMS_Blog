@@ -18,3 +18,21 @@ export const getBlogs=createAsyncThunk(
         }
     }
 )
+
+export const getBlog=createAsyncThunk(
+  "blog",
+  async(id, {rejectWithValue})=>{
+    try {
+      const response=await axios.get(
+        `${process.env.REACT_APP_BASE_URL}blogs/${id}`
+       
+      )
+      console.log(response)
+      return response
+      
+    } catch (error) {
+      return rejectWithValue("error")
+      
+    }
+  }
+)

@@ -26,6 +26,7 @@ import {
 // import storage from "redux-persist/lib/storage" //? local storage
 import storage from "redux-persist/lib/storage/session" //? session storage
 import blogsReducer from '../features/blogsSlice'
+import categoriesReducer from '../features/categoriesSlice'
 
 const persistConfig = {
   key: "root",
@@ -39,6 +40,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer)
   reducer: {
     auth: persistedReducer,
     blogs:blogsReducer,
+    categories:categoriesReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 

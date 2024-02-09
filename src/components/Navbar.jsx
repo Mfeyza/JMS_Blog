@@ -26,17 +26,17 @@ import { useDispatch } from "react-redux";
 const pages = [
   {
     name: "Our Story",
-    color: " rgb(22, 165, 98)",
+    color: "  #3586ff",
     backgroundColor: "transparent",
     path: "/our-story",
   },
-  { name: "Write", color: " rgb(22, 165, 98)", backgroundColor: "transparent", path: "/login", },
-  { name: "Get Started", color: "white", backgroundColor: "rgb(85, 212, 81)", path: "/login", },
+  { name: "Write", color: "  #3586ff", backgroundColor: "transparent", path: "/login", },
+  { name: "Get Started", color: "white", backgroundColor: " #3586ff", path: "/login", },
 ];
 const pages2 = [
   {
     name: "Our Story",
-    color: " rgb(22, 165, 98)",
+    color: "  #3586ff",
     backgroundColor: "transparent",
     path: "/our-story",
   },
@@ -157,7 +157,7 @@ const handleIconClick = () => {
               <MenuIcon />
             </IconButton>
             <Button
-              sx={{ fontSize: "1.5rem", color: " rgb(22, 165, 98)" }}
+              sx={{ fontSize: "1.5rem", color: "  #3586ff" }}
               onClick={handleIconClick}
             >
               JMSDev
@@ -208,8 +208,8 @@ const handleIconClick = () => {
           >
              {user && (
               <Button
-                startIcon={<RateReviewRoundedIcon  sx={{color:" rgb(22, 165, 98)"}} />}
-                sx={{ color: " rgb(22, 165, 98)", marginInlineEnd: "1rem" }}
+                startIcon={<RateReviewRoundedIcon  sx={{color:"  #3586ff"}} />}
+                sx={{ color: "  #3586ff", marginInlineEnd: "1rem" }}
               >
                 Write
               </Button>

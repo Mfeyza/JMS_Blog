@@ -11,6 +11,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import img from "../assets/3b22bd37e20ce993d52e4c3b242b73a3.gif";
 import img1 from "../assets/—Pngtree—unique tree with roots useful_8831990.png";
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import city  from "../helper/data";
+import { useState } from "react";
 
 export const registerSchema = object({
   username: string()
@@ -52,14 +59,20 @@ const RegisterForm = ({
   handleSubmit,
 }) => {
   const navigate = useNavigate();
+  const [selectedCity, setSelectedCity] = useState("");
+
+  const handleChangeCity = (event) => {
+    setSelectedCity(event.target.value);
+  };
   return (
     <Stack
       justifyContent={"space-between"}
       flexDirection={"row"}
       color={"white"}
-      sx={{ backgroundColor: "black", Width: "100%" }}
+      sx={{ backgroundColor: "black", Width: "100%",mb:"8rem" }}
       minHeight={"100vh"}
       flexWrap={"wrap"}
+      
     >
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs" flex={1}>
@@ -186,23 +199,36 @@ const RegisterForm = ({
                 />
               </Box>
               <Box
+                className="loginInput"
                 sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
               >
-                <TextField
-                  className="loginInput"
-                  label="City"
-                  name="city"
-                  type="text"
-                  variant="outlined"
-                  value={values.city}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.city && Boolean(errors.city)}
-                  helperText={errors.city}
-                  InputLabelProps={{
-                    style: { color: "white" },
-                  }}
-                />
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      sx={{
+                        color: "white",
+                        "&.Mui-focused": { color: "white" },
+                      }}
+                    >
+                      City
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={selectedCity}
+                      label="City"
+                      onChange={handleChangeCity}
+                      sx={{
+                        color: "white",
+                        "&.Mui-focused": { color: "white" },
+                      }}
+                    >
+                      {city.map((item) => {
+                       return <MenuItem key={item.id}   value={item.id}>{item.name}</MenuItem>;
+                      })}
+                    </Select>
+                  </FormControl>
+                </Box>
                 <TextField
                   className="loginInput"
                   name="image"
@@ -242,10 +268,10 @@ const RegisterForm = ({
                 sx={{
                   mt: 3,
                   mb: 2,
-                  backgroundColor: "green",
+                  backgroundColor: " #3586ff",
                   color: "white",
                   "&:hover": {
-                    backgroundColor: "darkgreen",
+                    backgroundColor: " #3586ff",
                   },
                 }}
               >

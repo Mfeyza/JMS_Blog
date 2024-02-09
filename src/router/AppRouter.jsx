@@ -8,6 +8,7 @@ import Blogs from "../pages/Blogs";
 import PrivateRouter from "./PrivateRouter";
 import OurStory from "../pages/OurStory";
 import Profile from "../pages/Profile";
+import Footer from "../components/Footer";
 
 const AppRouter = () => {
   return (
@@ -24,6 +25,7 @@ const AppRouter = () => {
   
     </Route>
       </Routes>
+      <Footer/>
     </Router>
   );
 };

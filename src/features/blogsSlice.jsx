@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBlogs } from "../thunks/blogsthunk";
+import { getBlogs,getBlog } from "../thunks/blogsthunk";
 
 
 const blogsSlice=createSlice({
@@ -19,6 +19,7 @@ const blogsSlice=createSlice({
         comments:"",
         userId:"",
         categoryId:"",
+        currentBlog:null,
     },
     reducers:{},
     extraReducers:(builder)=>{
@@ -37,6 +38,19 @@ const blogsSlice=createSlice({
             state.loading=false
             state.error=true
         })
+        .addCase(getBlog.pending, (state) => {
+            state.loading = true;
+            state.error = false;
+          })
+          .addCase(getBlog.fulfilled, (state, { payload }) => {
+            state.loading = false;
+            state.error = false;
+            state.currentBlog = payload.data; 
+          })
+          .addCase(getBlog.rejected, (state, { payload }) => {
+            state.loading = false;
+            state.error = true;
+          });
     }
 })
 export const {} = blogsSlice.actions

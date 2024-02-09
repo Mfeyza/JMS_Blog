@@ -38,7 +38,7 @@ const navigate = useNavigate();
               actions.resetForm()
               actions.setSubmitting(false)
             }}
-            component={(props) => <RegisterForm {...props} />}
+            component={(props) => <RegisterForm   {...props} />}
           ></Formik>
 
         </Grid>

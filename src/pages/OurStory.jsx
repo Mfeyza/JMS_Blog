@@ -8,16 +8,17 @@ const OurStory = () => {
   return (
   <Stack minHeight={"100vh"} sx={{display:"flex",  alignItems:"center" ,backgroundColor:"black"}}>
     <Box sx={{display:"flex", justifyContent:"space-between",maxWidth:"100%" ,gap:"5rem", mt:"5rem", flexWrap:"wrap"}}>
-   <Card sx={{flex:1,backgroundColor:"black"}} >
+   <Card sx={{backgroundColor:"black",width:{xs:"100%",sm:"45%"}}} >
   <CardMedia
  
     component="img"
     image={img}
     alt="Açıklama"
-    sx={{mt:"2rem"}}
+    sx={{mt:"2rem",objectFit:"contain", }}
+    height={500} 
   />
 </Card>
-    <Box sx={{flex:1,display:"flex", flexDirection:"column",width:"100%"}}>
+    <Box sx={{display:"flex", flexDirection:"column", width:{xs:"100%",sm:"50%"}}}>
     <Typography color={"white"} variant="h4" gutterBottom>
           JMSDev: Uniting Software Minds
         </Typography>

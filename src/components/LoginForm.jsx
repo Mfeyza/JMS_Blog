@@ -62,12 +62,14 @@ const LoginForm = ({ values, handleChange, handleBlur, touched, errors }) => {
                 fullWidth
                 variant="contained"
                 sx={{
+                  width:"14rem",
                   mt: 3,
                   mb: 2,
-                  backgroundColor: "green",
+                  backgroundColor: " #3586ff",
                   color: "white",
                   "&:hover": {
-                    backgroundColor: "darkgreen",
+                    backgroundColor: " #3586ff",
+                   
                   },
                 }}
               >
