@@ -13,6 +13,7 @@ const authSlice=createSlice({
         error:false,
         token:"",
         image:"",
+        city:"",
     },
     reducers:{
        
@@ -29,6 +30,7 @@ const authSlice=createSlice({
             state.user=payload?.data.user.username
             state.image=payload?.data.user.image
             state.token=payload?.data.token
+            state.city=payload?.data.user.city
         })
         .addCase(login.rejected,(state)=>{
             state.loading=false
@@ -41,12 +43,13 @@ const authSlice=createSlice({
         state.error = false;
       })
       .addCase(register.fulfilled, (state, { payload }) => {
-        console.log(payload)
+    
         state.loading = false;
         state.error = false;
         state.user = payload?.data.data.username;
         state.image=payload?.data.data.image
         state.token = payload?.data.token; 
+        state.city=payload?.data.data.city
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.loading = false;
@@ -55,6 +58,8 @@ const authSlice=createSlice({
       .addCase(logout.fulfilled,(state)=>{
         state.user = null;
         state.token = "";
+        state.city="";
+        state.image=""
       })
     }
 

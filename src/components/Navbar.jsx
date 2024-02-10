@@ -40,6 +40,7 @@ const pages2 = [
     backgroundColor: "transparent",
     path: "/our-story",
   },
+ 
 
 ];
 const settings = [
@@ -210,6 +211,7 @@ const handleIconClick = () => {
               <Button
                 startIcon={<RateReviewRoundedIcon  sx={{color:"  #3586ff"}} />}
                 sx={{ color: "  #3586ff", marginInlineEnd: "1rem" }}
+                onClick={()=>navigate("/blogs/newBlog")}
               >
                 Write
               </Button>

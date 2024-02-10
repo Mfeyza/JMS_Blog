@@ -13,10 +13,18 @@ import { faHandsClapping } from '@fortawesome/free-solid-svg-icons';
 import { faComments } from '@fortawesome/free-solid-svg-icons'; 
 import RemoveRedEyeTwoToneIcon from '@mui/icons-material/RemoveRedEyeTwoTone';
 import BookmarkAddedOutlinedIcon from '@mui/icons-material/BookmarkAddedOutlined';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function ImgMediaCard({item}) {
+  console.log("item", item)
+  const navigate=useNavigate()
+  const handleClickBlog=()=>{
+   
+    navigate(`/blogs/${item._id}`)
+
+  }
   return (
-    <Card sx={{ display: {sm:'flex',xs:"block"}, maxWidth: "100%",cursor:"pointer" }} >
+    <Card sx={{ display: {sm:'flex',xs:"block"}, maxWidth: "100%",cursor:"pointer" }} onClick={handleClickBlog} >
     <Box sx={{ display: 'flex', flexDirection: 'column',justifyContent:"center" }}>
       <CardMedia
         component="img"

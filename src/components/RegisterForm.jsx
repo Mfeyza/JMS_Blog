@@ -41,9 +41,7 @@ export const registerSchema = object({
     .matches(/[a-z]/, "Password must contain a lowercase letter")
     .matches(/[A-Z]/, "Password must contain an uppercase letter")
     .matches(/[!/[@$!%*?&]+/, "Password must contain a special character"),
-  city: string()
-    .max(20, "City must be less than 20 characters.")
-    .required("City is required"),
+
   bio: string()
     .max(50, "Bio must be less than 50 characters.")
     .required("Bio is required"),
@@ -59,11 +57,9 @@ const RegisterForm = ({
   handleSubmit,
 }) => {
   const navigate = useNavigate();
-  const [selectedCity, setSelectedCity] = useState("");
 
-  const handleChangeCity = (event) => {
-    setSelectedCity(event.target.value);
-  };
+
+ 
   return (
     <Stack
       justifyContent={"space-between"}
@@ -214,17 +210,19 @@ const RegisterForm = ({
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={selectedCity}
+                      name="city"
+                      id="city"
+                      value={values.city}
                       label="City"
-                      onChange={handleChangeCity}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                       sx={{
                         color: "white",
                         "&.Mui-focused": { color: "white" },
                       }}
                     >
                       {city.map((item) => {
-                       return <MenuItem key={item.id}   value={item.id}>{item.name}</MenuItem>;
+                       return <MenuItem key={item.id}   value={item.name}>{item.name}</MenuItem>;
                       })}
                     </Select>
                   </FormControl>

@@ -9,23 +9,32 @@ import PrivateRouter from "./PrivateRouter";
 import OurStory from "../pages/OurStory";
 import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
+import BlogDetails from "../pages/BlogDetails"
+import NewBlog from "../pages/NewBlog";
 
 const AppRouter = () => {
   return (
-    <Router>
+    <Router >
+      <div style={{display:"flex", flexDirection:"column", minHeight:"100vh"}}>
        <Navbar/>
+       <div>
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register/>} />
       <Route path="/our-story" element={<OurStory/>}/>
       <Route path="/blogs" element={<PrivateRouter />}>
-    <Route path="/blogs" element={<Blogs/>}  />
-    <Route path="/blogs/profile" element={<Profile/>}  />
+    <Route index element={<Blogs/>}  />
+    <Route path="profile" element={<Profile/>}  />
+    <Route path=":id" element={<BlogDetails/>}  />
+    <Route path="newBlog" element={<NewBlog/>}/>
+
   
     </Route>
       </Routes>
+      </div>
       <Footer/>
+      </div>
     </Router>
   );
 };

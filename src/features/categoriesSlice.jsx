@@ -5,7 +5,9 @@ const categoriesSlice=createSlice({
     name:"categories",
 
     initialState:{
-        name:""
+        name:"",
+        _id:""
+
     },
     reducers:{},
     extraReducers:(builder)=>{
