@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBlogs,getBlog } from "../thunks/blogsthunk";
+import { getBlogs,getBlog,postBlog } from "../thunks/blogsthunk";
 
 
 const blogsSlice=createSlice({
@@ -19,7 +19,7 @@ const blogsSlice=createSlice({
         comments:"",
         userId:"",
         categoryId:"",
-        currentBlog:null,
+        currentBlog:"",
     },
     reducers:{},
     extraReducers:(builder)=>{
@@ -50,7 +50,8 @@ const blogsSlice=createSlice({
           .addCase(getBlog.rejected, (state, { payload }) => {
             state.loading = false;
             state.error = true;
-          });
+          })
+        
     }
 })
 export const {} = blogsSlice.actions

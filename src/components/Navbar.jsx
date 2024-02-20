@@ -20,41 +20,48 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import img2 from "../assets/—Pngtree—unique tree with roots useful_8831990.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {logout} from "../thunks/auththunk"
+import { logout } from "../thunks/auththunk";
 import { useDispatch } from "react-redux";
+import { getBlogs } from "../thunks/blogsthunk";
+import debounce from "../helper/methods";
 
 const pages = [
   {
     name: "Our Story",
-    color: "  #3586ff",
+    color: " #3cb97f",
     backgroundColor: "transparent",
     path: "/our-story",
   },
-  { name: "Write", color: "  #3586ff", backgroundColor: "transparent", path: "/login", },
-  { name: "Get Started", color: "white", backgroundColor: " #3586ff", path: "/login", },
+  {
+    name: "Write",
+    color: " #3cb97f",
+    backgroundColor: "transparent",
+    path: "/login",
+  },
+  {
+    name: "Get Started",
+    color: "white",
+    backgroundColor: "#3cb97f",
+    path: "/login",
+  },
 ];
 const pages2 = [
   {
     name: "Our Story",
-    color: "  #3586ff",
+    color: " #3cb97f",
     backgroundColor: "transparent",
     path: "/our-story",
   },
- 
-
 ];
-const settings = [
-   "Profile",
-   "Logout" 
-];
+const settings = ["Profile", "Logout"];
 
 function Navbar() {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const user = useSelector((state) => state.auth.user);
-  const image=useSelector((state)=>state.auth.image)
-  console.log(image)
+  const image = useSelector((state) => state.auth.image);
+  console.log(image);
   const currentPage = user ? pages2 : pages;
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -96,35 +103,33 @@ function Navbar() {
   }));
   const navigate = useNavigate();
   const handleMenuClick = (setting) => {
-   
     if (setting === "Logout") {
-      dispatch(logout()); 
-      navigate('/');
-
+      dispatch(logout());
+      navigate("/");
     } else if (setting === "Profile") {
-      navigate('/blogs/profile'); 
-      
+      navigate("/blogs/profile");
     }
-    handleCloseUserMenu(); 
+    handleCloseUserMenu();
   };
 
   const handlePageClick = (page) => {
-  
+    if (user && page.name === "Our Story") {
+      navigate(page.path);
+    } else if (!user && page.name === "Get Started") {
+      navigate(page.path);
+    } else {
+      navigate(page.path);
+    }
+  };
 
-   if(user&&page.name === "Our Story"){
-    navigate(page.path)
-   }
-  else if (!user&&page.name==="Get Started"){
-navigate(page.path)
-  }else{
-    navigate(page.path)
-  }
+  const handleSearch = React.useCallback(
+    debounce((e) => dispatch(getBlogs({ keyword: e.target.value })), 1000),
+    []
+  );
+  const handleIconClick = () => {
+    user ? navigate("/blogs") : navigate("/");
+  };
 
-  }
-
-const handleIconClick = () => {
- user? navigate("/blogs") : navigate("/")
-}
   return (
     <AppBar
       position="static"
@@ -158,7 +163,7 @@ const handleIconClick = () => {
               <MenuIcon />
             </IconButton>
             <Button
-              sx={{ fontSize: "1.5rem", color: "  #3586ff" }}
+              sx={{ fontSize: "1.5rem", color: "   #3cb97f" }}
               onClick={handleIconClick}
             >
               JMSDev
@@ -179,6 +184,7 @@ const handleIconClick = () => {
                 <StyledInputBase
                   placeholder="Search…"
                   inputProps={{ "aria-label": "search" }}
+                  onChange={handleSearch}
                 />
               </Box>
             )}
@@ -207,64 +213,63 @@ const handleIconClick = () => {
               justifyContent: "flex-end",
             }}
           >
-             {user && (
+            {user && (
               <Button
-                startIcon={<RateReviewRoundedIcon  sx={{color:"  #3586ff"}} />}
-                sx={{ color: "  #3586ff", marginInlineEnd: "1rem" }}
-                onClick={()=>navigate("/blogs/newBlog")}
+                startIcon={<RateReviewRoundedIcon sx={{ color: " #3cb97f" }} />}
+                sx={{ color: " #3cb97f", marginInlineEnd: "1rem" }}
+                onClick={() => navigate("/blogs/newBlog")}
               >
                 Write
               </Button>
             )}
- {
-  currentPage.map((page) => (
-    <Button
-      key={page.name}
-      onClick={() => handlePageClick(page)}
-      sx={{
-        color: page.color,
-        mx: 2,
-        backgroundColor: page.backgroundColor,
-      }}
-    >
-      {page.name}
-    </Button>
-  ))
-}
+            {currentPage.map((page) => (
+              <Button
+                key={page.name}
+                onClick={() => handlePageClick(page)}
+                sx={{
+                  color: page.color,
+                  mx: 2,
+                  backgroundColor: page.backgroundColor,
+                }}
+              >
+                {page.name}
+              </Button>
+            ))}
 
-           {user&& (
-            
-             <Box sx={{ flexGrow: 0 }}>
-                          <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                              <Avatar alt="UserPicture" src={image} />
-                           </IconButton>
-                         </Tooltip>
-                         <Menu
-                           sx={{ mt: "45px" }}
-                           id="menu-appbar"
-                           anchorEl={anchorElUser}
-                           anchorOrigin={{
-                             vertical: "top",
-                             horizontal: "right",
-                           }}
-                           keepMounted
-                           transformOrigin={{
-                             vertical: "top",
-                             horizontal: "right",
-                           }}
-                           open={Boolean(anchorElUser)}
-                           onClose={handleCloseUserMenu}
-                         >
-                           {settings.map((setting) => (
-                            
-                             <MenuItem key={setting}  onClick={() => handleMenuClick(setting)} >
-                               <Typography textAlign="center">{setting}</Typography>
-                             </MenuItem>
-                           ))}
-                         </Menu>
-                       </Box>
-           )}
+            {user && (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="UserPicture" src={image} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem
+                      key={setting}
+                      onClick={() => handleMenuClick(setting)}
+                    >
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            )}
           </Box>
         </Toolbar>
       </Container>
@@ -273,9 +278,3 @@ const handleIconClick = () => {
 }
 
 export default Navbar;
-
-
-
-
-
-

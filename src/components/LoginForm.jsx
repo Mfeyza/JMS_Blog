@@ -65,10 +65,10 @@ const LoginForm = ({ values, handleChange, handleBlur, touched, errors }) => {
                   width:"14rem",
                   mt: 3,
                   mb: 2,
-                  backgroundColor: " #3586ff",
+                  backgroundColor: "#3cb97f",
                   color: "white",
                   "&:hover": {
-                    backgroundColor: " #3586ff",
+                    backgroundColor: "#3cb97f",
                    
                   },
                 }}

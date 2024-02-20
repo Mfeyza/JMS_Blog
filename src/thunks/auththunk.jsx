@@ -61,3 +61,25 @@ export const register = createAsyncThunk(
       }
     }
   );
+  export const updateUser = createAsyncThunk(
+    "updateUser",
+    async ({id ,info }, { rejectWithValue,getState }) => {
+      const token = getState().auth.token; 
+      try {
+        const response = await axios.put(
+          `${process.env.REACT_APP_BASE_URL}users/${id}`,info ,{
+            headers: {
+              'Authorization': `Token ${token}`,
+          }
+      } 
+       
+        );
+        
+        return response
+        
+      } catch (error) {
+       
+        return rejectWithValue('olmadı');
+      }
+    }
+  );

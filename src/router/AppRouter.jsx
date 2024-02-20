@@ -33,7 +33,7 @@ const AppRouter = () => {
     </Route>
       </Routes>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
       </div>
     </Router>
   );
