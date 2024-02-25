@@ -266,25 +266,25 @@ const RegisterForm = ({
                 sx={{
                   mt: 3,
                   mb: 2,
-                  backgroundColor: " #3586ff",
+                  backgroundColor: "#3cb97f",
                   color: "white",
                   "&:hover": {
-                    backgroundColor: " #3586ff",
+                    backgroundColor:  "#3cb97f",
                   },
                 }}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 <Grid item>
                   <Typography
                     onClick={() => {
-                      navigate("/Register");
+                      navigate("/Login");
                     }}
                     variant="body2"
                     sx={{ cursor: "pointer" }}
                   >
-                    Already have an account? Sign In
+                    Already have an account? <span style={{color: "#3cb97f"}}>Sign In</span>
                   </Typography>
                 </Grid>
               </Grid>

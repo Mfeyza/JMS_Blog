@@ -91,7 +91,14 @@ const authSlice=createSlice({
         state.city="";
         state.image="";
         state._id="";
-        state.userId=""
+        state.userId="";
+        state.firstName="";
+        state.lastName="";
+        state.bio="";
+        state.city="";
+        state.email="";
+        state.password="";
+        state.username="";
       })}
 
 

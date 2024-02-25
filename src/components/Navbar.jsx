@@ -69,6 +69,11 @@ function Navbar() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+  const handleMenuItemClick = (path) => {
+    navigate(path);
+    handleCloseNavMenu();
+  };
+
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -198,12 +203,16 @@ function Navbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
             >
-              {currentPage.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page?.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+             {user ? [...pages2, ...settings].map((option) => (
+              <MenuItem key={option} onClick={() => handleMenuItemClick(option.path || option)}>
+                <Typography textAlign="center">{option.name || option}</Typography>
+              </MenuItem>
+            )) : [...pages, ...settings].map((option) => (
+              <MenuItem key={option} onClick={() => handleMenuItemClick(option.path || option)}>
+                <Typography textAlign="center">{option.name || option}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
           </Box>
 
           <Box

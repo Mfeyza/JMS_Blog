@@ -10,6 +10,7 @@ import {
   CardContent,
   Tooltip,
   TextField,
+  Avatar,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -177,7 +178,9 @@ const BlogDetails = () => {
                     </div>
                   )}
                 </Stack>
-                <Stack flexDirection={"row"} alignItems={"center"}>
+                <Stack flexDirection={"row"} gap={2} alignItems={"center"}>
+                   {/* <Avatar alt="user" src={imageUser}/> */}
+                  <Typography>{userId?.firstName} {userId?.lastName}</Typography>
                   <Typography component="div">{dateString}</Typography>
                   <Button
                     className="btn"
@@ -188,7 +191,7 @@ const BlogDetails = () => {
                     {countOfVisitors !== 0 && countOfVisitors}
                   </Button>
                 </Stack>
-                <Typography variant="body2" color="text.secondary">
+                <Typography mt={3} variant="body2" color="text.secondary">
                   {content}
                 </Typography>
               </CardContent>
