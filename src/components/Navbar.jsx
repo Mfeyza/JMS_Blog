@@ -25,7 +25,7 @@ import { useDispatch } from "react-redux";
 import { getBlogs } from "../thunks/blogsthunk";
 import debounce from "../helper/methods";
 
-const pages = [
+const logoutUser = [
   {
     name: "Our Story",
     color: " #3cb97f",
@@ -45,12 +45,30 @@ const pages = [
     path: "/login",
   },
 ];
-const pages2 = [
+const loginUser = [
   {
     name: "Our Story",
     color: " #3cb97f",
     backgroundColor: "transparent",
     path: "/our-story",
+  },
+  {
+    name: "Write",
+    color: " #3cb97f",
+    backgroundColor: "transparent",
+    path: "/blogs/newBlog",
+  },
+  {
+    name: "Profile",
+    color: " #3cb97f",
+    backgroundColor: "transparent",
+    path: "/blogs/profile",
+  },
+  {
+    name: "Logout",
+    color: " #3cb97f",
+    backgroundColor: "transparent",
+    path: "/logout",
   },
 ];
 const settings = ["Profile", "Logout"];
@@ -62,7 +80,7 @@ function Navbar() {
   const user = useSelector((state) => state.auth.user);
   const image = useSelector((state) => state.auth.image);
   console.log(image);
-  const currentPage = user ? pages2 : pages;
+  const currentPage = user ? loginUser : logoutUser;
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -70,10 +88,14 @@ function Navbar() {
     setAnchorElUser(event.currentTarget);
   };
   const handleMenuItemClick = (path) => {
+    if (path === "/logout") {
+      dispatch(logout());
+      navigate("/");
+      return;
+    }
     navigate(path);
     handleCloseNavMenu();
   };
-
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -162,8 +184,8 @@ function Navbar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
-              sx={{ display: { xs: "flex", md: "none" } }}
+              color="white"
+              sx={{ color: "#3cb97f", display: { xs: "flex", md: "none" } }}
             >
               <MenuIcon />
             </IconButton>
@@ -203,16 +225,28 @@ function Navbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
             >
-             {user ? [...pages2, ...settings].map((option) => (
-              <MenuItem key={option} onClick={() => handleMenuItemClick(option.path || option)}>
-                <Typography textAlign="center">{option.name || option}</Typography>
-              </MenuItem>
-            )) : [...pages, ...settings].map((option) => (
-              <MenuItem key={option} onClick={() => handleMenuItemClick(option.path || option)}>
-                <Typography textAlign="center">{option.name || option}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
+              {user
+                ? [...loginUser].map((option) => (
+                    <MenuItem
+                      key={option}
+                      onClick={() => handleMenuItemClick(option.path || option)}
+                    >
+                      <Typography textAlign="center">
+                        {option.name || option}
+                      </Typography>
+                    </MenuItem>
+                  ))
+                : [...logoutUser].map((option) => (
+                    <MenuItem
+                      key={option}
+                      onClick={() => handleMenuItemClick(option.path || option)}
+                    >
+                      <Typography textAlign="center">
+                        {option.name || option}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+            </Menu>
           </Box>
 
           <Box
@@ -231,19 +265,22 @@ function Navbar() {
                 Write
               </Button>
             )}
-            {currentPage.map((page) => (
-              <Button
-                key={page.name}
-                onClick={() => handlePageClick(page)}
-                sx={{
-                  color: page.color,
-                  mx: 2,
-                  backgroundColor: page.backgroundColor,
-                }}
-              >
-                {page.name}
-              </Button>
-            ))}
+            {currentPage.map((page) => {
+              if (page.name === 'Profile' || page.name === 'Logout' || page.name === 'Write') return;
+              return (
+                <Button
+                  key={page.name}
+                  onClick={() => handlePageClick(page)}
+                  sx={{
+                    color: page.color,
+                    mx: 2,
+                    backgroundColor: page.backgroundColor,
+                  }}
+                >
+                  {page.name}
+                </Button>
+              );
+            })}
 
             {user && (
               <Box sx={{ flexGrow: 0 }}>

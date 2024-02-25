@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import img1 from "../assets/3b22bd37e20ce993d52e4c3b242b73a3.gif";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,8 @@ const Home = () => {
     navigate("/Login");
   };
   return (
-    <Stack
+    <Container  sx={{ backgroundColor: "black" , minWidth:"100%"}}>
+    <Stack 
       justifyContent={"space-between"}
       flexDirection={"row"}
       color={"white"}
@@ -41,6 +42,7 @@ const Home = () => {
         <img src={img1} />
       </Box>
     </Stack>
+    </Container>
   );
 };
 

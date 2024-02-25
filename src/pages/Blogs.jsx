@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getBlogs } from "../thunks/blogsthunk";
 import Blog from "../components/Blog";
 import { Grid, Stack } from "@mui/material";
@@ -9,24 +9,17 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Typography, IconButton, Box, Container } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
-import Advise from "../components/Advise"
+import Advise from "../components/Advise";
 const Blogs = () => {
   const blog = useSelector((state) => state.blogs);
 
-  console.log(blog);
   const dispatch = useDispatch();
-
-  console.log("blog", blog);
+  const [mostblogs, setMostBlogs] = useState([]);
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
     dispatch(getCategories());
-    console.log(blog);
     dispatch(getBlogs({}));
   }, [dispatch]);
-  console.log({ categories });
-  console.log("xxx");
-
-  console.log(blog);
 
   const scrollRef = useRef(null);
 
@@ -37,6 +30,19 @@ const Blogs = () => {
       direction === "left" ? -containerWidth : containerWidth;
     container.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
+  useEffect(() => {
+    console.log(blog?.blogs);
+    if (blog?.blogs?.length > 0) {
+      // blog?.blogs dizisinin bir kopyasını oluştur
+      const blogsCopy = [...blog?.blogs];
+      // Kopya üzerinde sıralama yap
+      const sortedBlogs = blogsCopy.sort((a, b) => b.likes.length - a.likes.length);
+      // Sıralanmış kopyayı state'e ata
+      setMostBlogs(sortedBlogs);
+    }
+  }, [blog]);
+  
+  console.log(mostblogs);
 
   const skeleton = () => {
     if (blog.loading) {
@@ -53,22 +59,34 @@ const Blogs = () => {
     }
   };
   const filterDate = () => {
-  
     if (!blog?.blogs) {
       return [];
     }
-    
-  
+
     return [...blog.blogs].sort((a, b) => {
-      const dateA = new Date(a.updatedAt),
-            dateB = new Date(b.updatedAt);
+      const dateA = new Date(a.createdAt),
+        dateB = new Date(b.createdAt);
       return dateB - dateA;
     });
   };
   return (
     <Grid container spacing={2}>
-      <Grid item  xs={0} md={3}>
-       <Advise/>
+      <Grid item xs={0} md={3} >
+        <Box sx={{padding:4}}>
+        <Advise />
+        </Box>
+       
+        <Box sx={{padding:4, mt:5}}>
+          <Typography variant="h5" sx={{bgcolor:"#3cb97f",textAlign:"center"}}>Top 3 Blogs</Typography>
+          {mostblogs.splice(0,3).map(({image,title})=>{
+          return <Box sx={{mt:3}}>
+           <img src={image} style={{width:"50px", height:"50px"}} /> 
+         <Typography>{title}</Typography>
+          </Box>
+         
+          })}
+        
+        </Box>
       </Grid>
 
       <Grid item xs={12} md={9}>
@@ -136,7 +154,7 @@ const Blogs = () => {
           </Stack>
 
           <Stack width={"100%"}>
-            <Container >
+            <Container>
               {skeleton()}
               {filterDate()?.map((item) => {
                 return <Blog item={item} isProfile={false} />;

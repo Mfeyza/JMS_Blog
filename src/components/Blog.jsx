@@ -21,11 +21,10 @@ export default function ImgMediaCard({ item, isProfile }) {
   const blogUserId = useSelector((state) => state.auth._id);
   const [savedBlogs, setSavedBlogs] = React.useState([]);
   const [save, setSave] = React.useState(false);
-  
 
-  const { updatedAt } = item || {};
+  const { createdAt } = item || {};
 
-  const dateString = new Date(updatedAt).toLocaleDateString("tr-TR");
+  const dateString = new Date(createdAt).toLocaleDateString("tr-TR");
 
   const navigate = useNavigate();
   const handleClickBlog = () => {
@@ -44,29 +43,27 @@ export default function ImgMediaCard({ item, isProfile }) {
   };
   React.useEffect(() => {
     const blogs = sessionStorage.getItem("savedBlogs");
-    setSave(blogs && JSON.parse(blogs)?.find(x => x._id === item._id))
+    setSave(blogs && JSON.parse(blogs)?.find((x) => x._id === item._id));
     setSavedBlogs(blogs ? JSON.parse(blogs) : []);
-  
-  
   }, []);
 
   const handleSave = () => {
     const currentSavedBlogs = sessionStorage.getItem("savedBlogs");
-    const savedBlogsArray = currentSavedBlogs ? JSON.parse(currentSavedBlogs) : [];
-    const blogIndex = savedBlogsArray.findIndex((blog) => blog._id === item._id);
-  
+    const savedBlogsArray = currentSavedBlogs
+      ? JSON.parse(currentSavedBlogs)
+      : [];
+    const blogIndex = savedBlogsArray.findIndex(
+      (blog) => blog._id === item._id
+    );
+
     if (blogIndex !== -1) {
-      // Blog zaten kaydedilmişse, kaydedilenler listesinden çıkar
       savedBlogsArray.splice(blogIndex, 1);
     } else {
-      // Blog henüz kaydedilmemişse, kaydedilenler listesine ekle
       savedBlogsArray.push(item);
     }
-  
-    // Güncellenmiş listeyi sessionStorage'a kaydet
+
     sessionStorage.setItem("savedBlogs", JSON.stringify(savedBlogsArray));
-  
-    // save durumunu güncelle
+
     setSave(blogIndex === -1);
   };
   return (
@@ -141,9 +138,7 @@ export default function ImgMediaCard({ item, isProfile }) {
                 onClick={handleSave}
                 sx={{
                   width: "1rem",
-                  color: save
-                    ?" #e0d451"
-                    : " #3cb97f",
+                  color: save ? " #e0d451" : " #3cb97f",
                 }}
               />
             </Button>
