@@ -9,6 +9,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Typography, IconButton, Box, Container } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
+import Advise from "../components/Advise"
 const Blogs = () => {
   const blog = useSelector((state) => state.blogs);
 
@@ -51,10 +52,23 @@ const Blogs = () => {
       );
     }
   };
+  const filterDate = () => {
+  
+    if (!blog?.blogs) {
+      return [];
+    }
+    
+  
+    return [...blog.blogs].sort((a, b) => {
+      const dateA = new Date(a.updatedAt),
+            dateB = new Date(b.updatedAt);
+      return dateB - dateA;
+    });
+  };
   return (
     <Grid container spacing={2}>
-      <Grid item xs={0} md={3}>
-        <Typography>1.div</Typography>
+      <Grid item  xs={0} md={3}>
+       <Advise/>
       </Grid>
 
       <Grid item xs={12} md={9}>
@@ -98,7 +112,14 @@ const Blogs = () => {
                     gap: "5rem",
                     alignItems: "center",
                   }}
-                > <Typography sx={{cursor:"pointer"}} onClick={()=> dispatch(getBlogs({}))}>All</Typography>
+                >
+                  {" "}
+                  <Typography
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => dispatch(getBlogs({}))}
+                  >
+                    All
+                  </Typography>
                   {categories?.map((category) => {
                     return <Categories category={category} />;
                   })}
@@ -115,9 +136,9 @@ const Blogs = () => {
           </Stack>
 
           <Stack width={"100%"}>
-            <Container>
+            <Container >
               {skeleton()}
-              {blog?.blogs?.map((item) => {
+              {filterDate()?.map((item) => {
                 return <Blog item={item} isProfile={false} />;
               })}
             </Container>

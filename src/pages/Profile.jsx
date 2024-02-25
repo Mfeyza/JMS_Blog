@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EditProfileModal from "../components/EditProfileModal";
 import Blog from "../components/Blog";
-import {  getMyBlogs } from "../thunks/blogsthunk";
+import { getMyBlogs } from "../thunks/blogsthunk";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -12,38 +12,46 @@ const Profile = () => {
   const handleClose = () => setOpen(false);
   const userInfo = useSelector((state) => state.auth);
   const blogUserId = useSelector((state) => state.auth._id);
-  console.log(userInfo);
+ const [show,setShow]=useState(!(window.innerWidth < 768))
+   // Diğer state ve hook tanımlamalarınız...
+   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+ 
   const { image, city, email, lastName, firstName, username, bio, password } =
     userInfo;
   const blog = useSelector((state) => state.blogs);
+  const [selectedBlog, setSelectedBlog] = useState([]);
   useEffect(() => {
     dispatch(getMyBlogs(blogUserId));
+    const blogs = sessionStorage.getItem("savedBlogs");
+    // setSave( JSON.parse(blogs))
+    setSelectedBlog(blogs ? JSON.parse(blogs) : []);
   }, [dispatch]);
-  console.log(username);
-  // const skeleton = () => {
-  //   if (blog.loading) {
-  //     return (
-  //       <Grid>
-  //         {[...new Array(6)].map((_, index) => (
-  //           <Skeleton
-  //             sx={{ height: "40vh", padding: "0px" }}
-  //             animation="wave"
-  //           />
-  //         ))}
-  //       </Grid>
-  //     );
-  //   }
-  // };
-  console.log(blog?.blogs);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    // Component unmount olduğunda event listener'ı temizle
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const handleShow = () => {
+    if (isMobile) {
+      setShow(!show);
+    }
+  };
   return (
     <Container>
       <Grid container>
         <Grid
           item
           md={3}
+          xs={12}
           justifyContent={"space-between"}
           flexDirection={"row"}
           flexWrap={"wrap"}
+         
         >
           <Box
             sx={{
@@ -76,12 +84,28 @@ const Profile = () => {
               userInfo={userInfo}
             />
           </Box>
+          <Typography onClick={handleShow}  sx={{cursor:"pointer",textAlign:"center",marginRight:3,mt:3, bgcolor:"#3cb97f"}}>My Favorite Blogs</Typography>
+          {show && (
+          <Box sx={{padding:3,gap:"5px"}}>
+            {
+              selectedBlog.map((item)=>{
+                return <Box sx={{display:"flex", gap:"5px", pt:3}}>
+                  <img src={item?.image} style={{width:"50px", height:"50px"}} />
+                  <Typography>{item?.title}</Typography>
+                </Box>
+              })
+            }
+          </Box>)}
         </Grid>
-        <Grid item md={9}>
+        <Grid item md={9} xs={12}>
           {/* {skeleton()} */}
 
           {blog?.blogs?.map((item) => {
-            return item.userId === blogUserId && <Blog item={item} isProfile={true}/>;
+            return (
+              item.userId === blogUserId && (
+                <Blog item={item} isProfile={true} />
+              )
+            );
           })}
         </Grid>
       </Grid>

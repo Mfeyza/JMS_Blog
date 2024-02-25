@@ -19,7 +19,13 @@ import { postLike } from "../thunks/blogsthunk";
 
 export default function ImgMediaCard({ item, isProfile }) {
   const blogUserId = useSelector((state) => state.auth._id);
-  console.log("blogUserId", blogUserId);
+  const [savedBlogs, setSavedBlogs] = React.useState([]);
+  const [save, setSave] = React.useState(false);
+  
+
+  const { updatedAt } = item || {};
+
+  const dateString = new Date(updatedAt).toLocaleDateString("tr-TR");
 
   const navigate = useNavigate();
   const handleClickBlog = () => {
@@ -32,15 +38,43 @@ export default function ImgMediaCard({ item, isProfile }) {
         id: item._id,
         detail: false,
         blogUserId,
-        isProfile
+        isProfile,
       })
     );
+  };
+  React.useEffect(() => {
+    const blogs = sessionStorage.getItem("savedBlogs");
+    setSave(blogs && JSON.parse(blogs)?.find(x => x._id === item._id))
+    setSavedBlogs(blogs ? JSON.parse(blogs) : []);
+  
+  
+  }, []);
+
+  const handleSave = () => {
+    const currentSavedBlogs = sessionStorage.getItem("savedBlogs");
+    const savedBlogsArray = currentSavedBlogs ? JSON.parse(currentSavedBlogs) : [];
+    const blogIndex = savedBlogsArray.findIndex((blog) => blog._id === item._id);
+  
+    if (blogIndex !== -1) {
+      // Blog zaten kaydedilmişse, kaydedilenler listesinden çıkar
+      savedBlogsArray.splice(blogIndex, 1);
+    } else {
+      // Blog henüz kaydedilmemişse, kaydedilenler listesine ekle
+      savedBlogsArray.push(item);
+    }
+  
+    // Güncellenmiş listeyi sessionStorage'a kaydet
+    sessionStorage.setItem("savedBlogs", JSON.stringify(savedBlogsArray));
+  
+    // save durumunu güncelle
+    setSave(blogIndex === -1);
   };
   return (
     <Card
       sx={{
         display: { sm: "flex", xs: "block" },
         maxWidth: "100%",
+        mt: 2,
       }}
     >
       <Box
@@ -58,16 +92,20 @@ export default function ImgMediaCard({ item, isProfile }) {
         />
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
+        <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {item.title}
           </Typography>
+
           <Typography
             variant="body2"
             color="text.secondary"
             className="line-clamp"
           >
             {item.content}
+          </Typography>
+          <Typography color="text.secondary" sx={{ fontSize: "10px", pt: 1 }}>
+            {dateString}
           </Typography>
         </CardContent>
         <CardActions>
@@ -98,8 +136,16 @@ export default function ImgMediaCard({ item, isProfile }) {
             {item.countOfVisitors !== 0 && item.countOfVisitors}
           </Button>
           <Tooltip title="save" arrow>
-            <Button className="btn" size="small">
-              <BookmarkAddedOutlinedIcon sx={{ width: "1rem" }} />
+            <Button size="small">
+              <BookmarkAddedOutlinedIcon
+                onClick={handleSave}
+                sx={{
+                  width: "1rem",
+                  color: save
+                    ?" #e0d451"
+                    : " #3cb97f",
+                }}
+              />
             </Button>
           </Tooltip>
           <Button className="btn" size="small">
