@@ -53,7 +53,7 @@ const NewBlog = () => {
   const handleShow = () => {
     setShow(!show);
   };
-  
+
   return (
     <Container
       sx={{
@@ -122,6 +122,7 @@ const NewBlog = () => {
                 onClick={handleShow}
                 sx={{
                   width: "8rem",
+                  color:"#3cb97f"
                 }}
               >
                 <NoteAddSharpIcon />
@@ -180,7 +181,13 @@ const NewBlog = () => {
                 <Box>
                   <Button
                     variant="contained"
-                    type="button"
+                    sx={{
+                      backgroundColor: "#3cb97f",
+                      color: "white",
+                      "&:hover": {
+                        backgroundColor:  "#3cb97f",
+                      },
+                    }}
                     onClick={() => handleSubmit("draft")}
                   >
                     Draft
@@ -188,6 +195,7 @@ const NewBlog = () => {
                   <Button
                     variant="outlined"
                     type="button"
+                    className="btn"
                     onClick={() => handleSubmit("published")}
                   >
                     Published

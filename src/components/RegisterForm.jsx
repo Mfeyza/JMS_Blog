@@ -43,7 +43,7 @@ export const registerSchema = object({
     .matches(/[!/[@$!%*?&]+/, "Password must contain a special character"),
 
   bio: string()
-    .max(50, "Bio must be less than 50 characters.")
+    .max(100, "Bio must be less than 100 characters.")
     .required("Bio is required"),
 });
 const defaultTheme = createTheme();

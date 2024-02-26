@@ -1,13 +1,22 @@
-import React from "react";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box, Button, Container, Stack, Typography,Grid } from "@mui/material";
 import img1 from "../assets/3b22bd37e20ce993d52e4c3b242b73a3.gif";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Blog from "../components/Blog"
+import { getBlogs } from "../thunks/blogsthunk";
 
 const Home = () => {
+  const blog = useSelector((state) => state.blogs);
+  const blogUserId = useSelector((state) => state.auth._id);
   const navigate = useNavigate();
+  const dispatch=useDispatch()
   const handleClick = () => {
     navigate("/Login");
   };
+  useEffect(()=>{
+    dispatch(getBlogs({}))
+  },[dispatch])
   return (
     <Container  sx={{ backgroundColor: "black" , minWidth:"100%"}}>
     <Stack 
@@ -42,6 +51,22 @@ const Home = () => {
         <img src={img1} />
       </Box>
     </Stack>
+    <Grid container>
+    <Grid item md={3} xs={12}>
+          
+            
+            </Grid>
+      <Grid item md={9} xs={12}>
+    {blog?.blogs?.map((item) => {
+      console.log(blog?.blogs)
+            return <Blog item={item} isProfile={true} />
+             
+           
+          })}
+          </Grid>
+          
+
+    </Grid>
     </Container>
   );
 };

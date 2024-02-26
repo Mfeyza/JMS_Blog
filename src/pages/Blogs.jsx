@@ -9,7 +9,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Typography, IconButton, Box, Container } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
-import Advise from "../components/Advise";
+import Advise from "../components/Advice";
 const Blogs = () => {
   const blog = useSelector((state) => state.blogs);
 

@@ -5,9 +5,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { TextField } from "@mui/material";
+import { Avatar, TextField,Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function MediaCard({ setStateItem, sendComment }) {
+  const userInfo = useSelector((state) => state.auth);
+  const {firstName,lastName,image}=userInfo
   const handleChange = (e) => {
     const { value } = e.target;
     setStateItem(value);
@@ -20,6 +23,11 @@ export default function MediaCard({ setStateItem, sendComment }) {
         title="green iguana"
       /> */}
       <CardContent>
+        <Box sx={{display:"flex",alignItems:"center",gap:1.5}}>
+        <Avatar>{firstName.substring(0,1)}</Avatar>
+        <Typography>{firstName} {lastName}</Typography>
+        </Box>
+        
         <TextField
           id="standard-multiline-static"
           multiline

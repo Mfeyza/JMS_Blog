@@ -132,17 +132,20 @@ export default function ImgMediaCard({ item, isProfile }) {
             <RemoveRedEyeTwoToneIcon sx={{ width: "1rem" }} />
             {item.countOfVisitors !== 0 && item.countOfVisitors}
           </Button>
-          <Tooltip title="save" arrow>
-            <Button size="small">
-              <BookmarkAddedOutlinedIcon
-                onClick={handleSave}
-                sx={{
-                  width: "1rem",
-                  color: save ? " #e0d451" : " #3cb97f",
-                }}
-              />
-            </Button>
-          </Tooltip>
+          {!isProfile && (
+            <Tooltip title="save" arrow>
+              <Button size="small">
+                <BookmarkAddedOutlinedIcon
+                  onClick={handleSave}
+                  sx={{
+                    width: "1rem",
+                    color: save ? " #e0d451" : " #3cb97f",
+                  }}
+                />
+              </Button>
+            </Tooltip>
+          )}
+
           <Button className="btn" size="small">
             <FontAwesomeIcon icon={faComments} />
           </Button>

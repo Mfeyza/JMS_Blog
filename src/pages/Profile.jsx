@@ -51,6 +51,7 @@ const Profile = () => {
           justifyContent={"space-between"}
           flexDirection={"row"}
           flexWrap={"wrap"}
+        
          
         >
           <Box

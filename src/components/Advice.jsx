@@ -34,10 +34,10 @@ function AdviceGenerator() {
 
   return (
     <Grid Container mt={3}>
-      <Grid item>
-        <Typography>Dev Quote ✍🏻 </Typography>
-        <Typography>"{advice?.en}"</Typography>
-        <Typography>"{advice?.author}"</Typography>
+      <Grid item >
+        <Typography className="advice" sx={{mb:3}}>Dev Quote ✍🏻 </Typography>
+        <Typography><i>"{advice?.en}"</i></Typography>
+        <Typography><i>"-{advice?.author}"</i></Typography>
       </Grid>
     </Grid>
   );

@@ -38,9 +38,17 @@ const BlogDetails = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params || {};
-  const { image, title, content, likes, countOfVisitors, updatedAt, userId } =
-    currentBlog?.data || {};
-    console.log(blogUserId)
+  const {
+    image,
+    title,
+    content,
+    likes,
+    countOfVisitors,
+    updatedAt,
+    createdAt,
+    userId,
+  } = currentBlog?.data || {};
+  console.log(blogUserId);
   const modalDetail = {
     ...currentBlog?.data,
     categoryId: currentBlog?.data?.categoryId?._id,
@@ -54,7 +62,7 @@ const BlogDetails = () => {
     dispatch(getBlog(id));
   }, [dispatch, id]);
 
-  const dateString = new Date(updatedAt).toLocaleDateString("tr-TR");
+  const dateString = new Date(createdAt).toLocaleDateString("tr-TR");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -179,8 +187,10 @@ const BlogDetails = () => {
                   )}
                 </Stack>
                 <Stack flexDirection={"row"} gap={2} alignItems={"center"}>
-                   {/* <Avatar alt="user" src={imageUser}/> */}
-                  <Typography>{userId?.firstName} {userId?.lastName}</Typography>
+                  <Avatar>{userId?.firstName.substring(0, 1)}</Avatar>
+                  <Typography>
+                    {userId?.firstName} {userId?.lastName}
+                  </Typography>
                   <Typography component="div">{dateString}</Typography>
                   <Button
                     className="btn"
