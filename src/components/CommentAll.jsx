@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteComment, putComment } from "../thunks/commentthunk";
 import { useParams } from "react-router-dom";
+import { Avatar, Box, Stack } from "@mui/material";
 
 export default function MediaCard({ item }) {
   const dispatch = useDispatch();
@@ -27,24 +28,26 @@ export default function MediaCard({ item }) {
 //   }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Typography variant="h6">
+    <Card sx={{ maxWidth: 345,  mt:3 , marginLeft:2, border:"none"}}>
+      <Box sx={{display:"flex",alignItems:"center",gap:1}}>
+      <Avatar>{firstName.substring(0,1)}</Avatar>
+      <Typography  variant="h6">
         {firstName} {lastName}
       </Typography>
+      </Box>
+     
 
-      <Typography sx={{ fontSize: "10px" }}>{dateString}</Typography>
-      <Typography mt={3}>{comment}</Typography>
+      <Typography mt={2} sx={{ fontSize: "10px" }}>{dateString}</Typography>
+      <Typography  mt={3}>{comment}</Typography>
 
-      <CardActions>
+      <CardActions sx={{justifyContent:"flex-end"}}>
       {userId?._id === blogUserId && (
-        <div>
-            <Button size="small" onClick={handleDeleteComment}>
+     
+            <Button className="btn" size="small" onClick={handleDeleteComment}>
           Delete
         </Button> 
-        {/* <Button size="small" onClick={handleEditComment}>
-            Edit
-        </Button> */}
-        </div>
+        
+       
        )}
         
       </CardActions>

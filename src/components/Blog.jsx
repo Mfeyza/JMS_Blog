@@ -117,9 +117,12 @@ export default function ImgMediaCard({ item, isProfile }) {
             <Button
               className="btn"
               size="small"
-              onClick={handleLike}
-              sx={{ display: "flex", gap: "0.3rem" }}
+              onClick={!isProfile ? handleLike : undefined}
+            
+              
+              sx={{ display: "flex", gap: "0.3rem", cursor: isProfile ? "not-allowed" : "pointer" }}
             >
+            
               <FontAwesomeIcon icon={faHandsClapping} />{" "}
               {item.likes?.length !== 0 && item.likes?.length}
             </Button>

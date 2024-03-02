@@ -71,12 +71,13 @@ const Blogs = () => {
   };
   return (
     <Grid container spacing={2}>
-      <Grid item xs={0} md={3} >
-        <Box sx={{padding:4}}>
+      <Grid item xs={0} md={3}  >
+        <Box >
+        <Box sx={{padding:4}} >
         <Advise />
         </Box>
        
-        <Box sx={{padding:4, mt:5}}>
+        <Box sx={{padding:4, mt:5}} >
           <Typography variant="h5" sx={{bgcolor:"#3cb97f",textAlign:"center"}}>Top 3 Blogs</Typography>
           {mostblogs.splice(0,3).map(({image,title})=>{
           return <Box sx={{mt:3}}>
@@ -87,6 +88,8 @@ const Blogs = () => {
           })}
         
         </Box>
+        </Box>
+
       </Grid>
 
       <Grid item xs={12} md={9}>

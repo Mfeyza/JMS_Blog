@@ -52,10 +52,7 @@ const Home = () => {
       </Box>
     </Stack>
     <Grid container>
-    <Grid item md={3} xs={12}>
-          
-            
-            </Grid>
+      
       <Grid item md={9} xs={12}>
     {blog?.blogs?.map((item) => {
       console.log(blog?.blogs)

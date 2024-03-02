@@ -43,6 +43,7 @@ const BlogDetails = () => {
     title,
     content,
     likes,
+    comments,
     countOfVisitors,
     updatedAt,
     createdAt,
@@ -231,8 +232,16 @@ const BlogDetails = () => {
                       {likes?.length !== 0 && likes?.length}
                     </IconButton>
                   </Tooltip>
-
+                  <Tooltip  arrow>
+                  <IconButton
+                      className="btn"
+                      size="small"
+                      sx={{ display: "flex", gap: "0.3rem" }}
+                    >
                   <CommentDriver toggleDrawer={toggleDrawer} state={state} />
+                  {comments?.length !== 0 && comments?.length}
+                  </IconButton>
+                  </Tooltip>
                 </Box>
               </Grid>
             </Card>
