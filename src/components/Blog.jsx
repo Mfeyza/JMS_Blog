@@ -98,9 +98,9 @@ export default function ImgMediaCard({ item, isProfile }) {
             variant="body2"
             color="text.secondary"
             className="line-clamp"
-          >
-            {item.content}
-          </Typography>
+            dangerouslySetInnerHTML={{ __html:item.content }}
+          />
+
           <Typography color="text.secondary" sx={{ fontSize: "10px", pt: 1 }}>
             {dateString}
           </Typography>
@@ -118,11 +118,12 @@ export default function ImgMediaCard({ item, isProfile }) {
               className="btn"
               size="small"
               onClick={!isProfile ? handleLike : undefined}
-            
-              
-              sx={{ display: "flex", gap: "0.3rem", cursor: isProfile ? "not-allowed" : "pointer" }}
+              sx={{
+                display: "flex",
+                gap: "0.3rem",
+                cursor: isProfile ? "not-allowed" : "pointer",
+              }}
             >
-            
               <FontAwesomeIcon icon={faHandsClapping} />{" "}
               {item.likes?.length !== 0 && item.likes?.length}
             </Button>

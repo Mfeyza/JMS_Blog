@@ -13,7 +13,6 @@ const Profile = () => {
   const userInfo = useSelector((state) => state.auth);
   const blogUserId = useSelector((state) => state.auth._id);
  const [show,setShow]=useState(!(window.innerWidth < 768))
-   // Diğer state ve hook tanımlamalarınız...
    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
  
@@ -24,7 +23,6 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getMyBlogs(blogUserId));
     const blogs = sessionStorage.getItem("savedBlogs");
-    // setSave( JSON.parse(blogs))
     setSelectedBlog(blogs ? JSON.parse(blogs) : []);
   }, [dispatch]);
   useEffect(() => {
@@ -33,7 +31,6 @@ const Profile = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    // Component unmount olduğunda event listener'ı temizle
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   const handleShow = () => {

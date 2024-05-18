@@ -18,7 +18,7 @@ import InputBase from "@mui/material/InputBase";
 import RateReviewRoundedIcon from "@mui/icons-material/RateReviewRounded";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import img2 from "../assets/—Pngtree—unique tree with roots useful_8831990.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout } from "../thunks/auththunk";
 import { useDispatch } from "react-redux";
@@ -42,7 +42,7 @@ const logoutUser = [
     name: "Get Started",
     color: "white",
     backgroundColor: "#3cb97f",
-    path: "/login",
+    path: "/blogs",
   },
 ];
 const loginUser = [
@@ -77,6 +77,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const location = useLocation();
   const user = useSelector((state) => state.auth.user);
   const image = useSelector((state) => state.auth.image);
   console.log(image);
@@ -140,10 +141,15 @@ function Navbar() {
   };
 
   const handlePageClick = (page) => {
+    console.log(page);
     if (user && page.name === "Our Story") {
       navigate(page.path);
     } else if (!user && page.name === "Get Started") {
-      navigate(page.path);
+      if (location.pathname === "/Login") {
+        navigate("/blogs");
+        return;
+      }
+      navigate("/Login");
     } else {
       navigate(page.path);
     }
@@ -161,7 +167,11 @@ function Navbar() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: user ? "transparent" : "black",
+        backgroundColor: ["/", "/Login", "/Register", "/our-story"].includes(
+          location.pathname
+        )
+          ? "black"
+          : "transparent",
         boxShadow: "none",
         color: "black",
         borderBottom: "1px solid rgb(214, 201, 201)",
@@ -266,7 +276,12 @@ function Navbar() {
               </Button>
             )}
             {currentPage.map((page) => {
-              if (page.name === 'Profile' || page.name === 'Logout' || page.name === 'Write') return;
+              if (
+                page.name === "Profile" ||
+                page.name === "Logout" ||
+                page.name === "Write"
+              )
+                return;
               return (
                 <Button
                   key={page.name}
@@ -277,7 +292,9 @@ function Navbar() {
                     backgroundColor: page.backgroundColor,
                   }}
                 >
-                  {page.name}
+                  {page.name === "Get Started" && location.pathname === "/blogs"
+                    ? "Giriş Yap"
+                    : page.name}
                 </Button>
               );
             })}

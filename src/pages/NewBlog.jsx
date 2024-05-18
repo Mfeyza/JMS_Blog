@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -9,13 +10,12 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../thunks/categoriesthunk";
 import { postBlog } from "../thunks/blogsthunk";
 import { useNavigate } from "react-router-dom";
 import NoteAddSharpIcon from "@mui/icons-material/NoteAddSharp";
-
+import { Editor } from "primereact/editor";
 const NewBlog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ const NewBlog = () => {
   };
   const [info, setInfo] = useState(initialState);
   const { title, content, image, categoryId, isPublish } = info;
+  const [text, setText] = useState("");
 
   useEffect(() => {
     dispatch(getCategories());
@@ -41,6 +42,15 @@ const NewBlog = () => {
       [name]: value,
     });
   };
+
+  const handleTextChange = (e) => {
+    setText(e.htmlValue);
+    setInfo({
+      ...info,
+      content: e.htmlValue,
+    });
+  };
+
   const handleSubmit = (checking) => {
     const values = {
       ...info,
@@ -49,10 +59,12 @@ const NewBlog = () => {
 
     dispatch(postBlog({ values, navigate }));
   };
+
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
   };
+
 
   return (
     <Container
@@ -95,28 +107,13 @@ const NewBlog = () => {
               }}
             />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <TextField
-                id="filled-multiline-static"
-                value={content}
-                onChange={handleChange}
+              <Editor
                 name="content"
-                placeholder="Tell us something..."
-                multiline
-                variant="standard"
-                InputProps={{
-                  disableUnderline: true,
-                  sx: {
-                    fontSize: "30px",
-                    border: "none",
-                    boxShadow: "none",
-                    "&:hover:not(.Mui-disabled):before": {
-                      border: "none",
-                    },
-                    "&:after": {
-                      border: "none",
-                    },
-                  },
-                }}
+                value={text || content || ""}
+                onTextChange={handleTextChange}
+                style={{ height: "320px" }}
+                
+               
               />
               <Button
                 onClick={handleShow}

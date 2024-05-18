@@ -32,12 +32,10 @@ const Blogs = () => {
   };
   useEffect(() => {
     console.log(blog?.blogs);
-    if (blog?.blogs?.length > 0) {
-      // blog?.blogs dizisinin bir kopyasını oluştur
+    if (blog?.blogs?.length > 0) { 
       const blogsCopy = [...blog?.blogs];
-      // Kopya üzerinde sıralama yap
       const sortedBlogs = blogsCopy.sort((a, b) => b.likes.length - a.likes.length);
-      // Sıralanmış kopyayı state'e ata
+  
       setMostBlogs(sortedBlogs);
     }
   }, [blog]);

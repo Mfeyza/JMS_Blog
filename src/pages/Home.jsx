@@ -12,7 +12,7 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch=useDispatch()
   const handleClick = () => {
-    navigate("/Login");
+    navigate("/blogs");
   };
   useEffect(()=>{
     dispatch(getBlogs({}))

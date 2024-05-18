@@ -16,24 +16,20 @@ import NewBlog from "../pages/NewBlog";
 const AppRouter = () => {
   return (
     <Router>
-    
-        <Navbar />
-      
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Register" element={<Register />} />
-            <Route path="/our-story" element={<OurStory />} />
-            <Route path="/blogs" element={<PrivateRouter />}>
-              <Route index element={<Blogs />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path=":id" element={<BlogDetails />} />
-              <Route path="newBlog" element={<NewBlog />} />
-            </Route>
-          </Routes>
-      
-    
-    </Router>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/our-story" element={<OurStory />} />
+      <Route path="/blogs" element={<Blogs />} />
+      <Route path="/" element={<PrivateRouter />}>
+        <Route path="blogs/:id" element={<BlogDetails />} />
+        <Route path="blogs/profile" element={<Profile />} />
+        <Route path="blogs/newBlog" element={<NewBlog />} />
+      </Route>
+    </Routes>
+  </Router>
   );
 };
 

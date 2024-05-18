@@ -202,9 +202,12 @@ const BlogDetails = () => {
                     {countOfVisitors !== 0 && countOfVisitors}
                   </Button>
                 </Stack>
-                <Typography mt={3} variant="body2" color="text.secondary">
-                  {content}
-                </Typography>
+                <Typography
+                  dangerouslySetInnerHTML={{ __html: content }}
+                  mt={3}
+                  variant="body2"
+                  color="text.secondary"
+                />
               </CardContent>
               <Grid
                 item
@@ -232,15 +235,18 @@ const BlogDetails = () => {
                       {likes?.length !== 0 && likes?.length}
                     </IconButton>
                   </Tooltip>
-                  <Tooltip  arrow>
-                  <IconButton
+                  <Tooltip arrow>
+                    <IconButton
                       className="btn"
                       size="small"
                       sx={{ display: "flex", gap: "0.3rem" }}
                     >
-                  <CommentDriver toggleDrawer={toggleDrawer} state={state} />
-                  {comments?.length !== 0 && comments?.length}
-                  </IconButton>
+                      <CommentDriver
+                        toggleDrawer={toggleDrawer}
+                        state={state}
+                      />
+                      {comments?.length !== 0 && comments?.length}
+                    </IconButton>
                   </Tooltip>
                 </Box>
               </Grid>
