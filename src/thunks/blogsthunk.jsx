@@ -17,8 +17,6 @@ export const getBlogs = createAsyncThunk(
         filtered = ``;
       }
 
-      // filtered=`?search[title]=${keyword}&filter=${category}`
-
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}blogs${filtered}`
       );

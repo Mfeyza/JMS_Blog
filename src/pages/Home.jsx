@@ -51,7 +51,7 @@ const Home = () => {
         <img src={img1} />
       </Box>
     </Stack>
-    <Grid container>
+    {/* <Grid container>
       
       <Grid item md={9} xs={12}>
     {blog?.blogs?.map((item) => {
@@ -63,7 +63,7 @@ const Home = () => {
           </Grid>
           
 
-    </Grid>
+    </Grid> */}
     </Container>
   );
 };
