@@ -1,17 +1,17 @@
-## JMS blog
+# JMS blog
 
 ## Bu proje, Node.js, Express ve MongoDB kullanılarak oluşturulmuş bir backend ve React ve Redux kullanılarak oluşturulmuş bir frontend ile tam özellikli bir blog uygulamasıdır. Uygulama, kullanıcı kimlik doğrulaması, blog oluşturma, yorumlar ve beğeniler gibi özellikleri destekler.
 
 ## Özellikler
-# Kullanıcı kimlik doğrulaması ve yetkilendirme
-# Blog oluşturma, okuma, güncelleme ve silme
-# Bloglara yorum yapma
-# Blogları beğenme ve beğenmeme
-# React ile duyarlı kullanıcı arayüzü
-# CKEditor ve TipTap ile zengin metin düzenleme
+## Kullanıcı kimlik doğrulaması ve yetkilendirme
+## Blog oluşturma, okuma, güncelleme ve silme
+## Bloglara yorum yapma
+## Blogları beğenme ve beğenmeme
+## React ile duyarlı kullanıcı arayüzü
+## CKEditor ve TipTap ile zengin metin düzenleme
 
 ## Teknolojiler
-# Backend
+## Backend
 Node.js
 Express.js
 MongoDB
@@ -19,7 +19,7 @@ Mongoose
 Kimlik doğrulama için JWT
 API dokümantasyonu için Swagger
 
-# Frontend
+## Frontend
 React
 Redux Toolkit
 Material-UI
