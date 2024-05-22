@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+## JMS blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Bu proje, Node.js, Express ve MongoDB kullanılarak oluşturulmuş bir backend ve React ve Redux kullanılarak oluşturulmuş bir frontend ile tam özellikli bir blog uygulamasıdır. Uygulama, kullanıcı kimlik doğrulaması, blog oluşturma, yorumlar ve beğeniler gibi özellikleri destekler.
 
-## Available Scripts
+## Özellikler
+# Kullanıcı kimlik doğrulaması ve yetkilendirme
+# Blog oluşturma, okuma, güncelleme ve silme
+# Bloglara yorum yapma
+# Blogları beğenme ve beğenmeme
+# React ile duyarlı kullanıcı arayüzü
+# CKEditor ve TipTap ile zengin metin düzenleme
 
-In the project directory, you can run:
+## Teknolojiler
+# Backend
+Node.js
+Express.js
+MongoDB
+Mongoose
+Kimlik doğrulama için JWT
+API dokümantasyonu için Swagger
 
-### `yarn start`
+# Frontend
+React
+Redux Toolkit
+Material-UI
+Formik ve Yup ile form yönetimi ve doğrulama
+Zengin metin düzenleme için CKEditor ve TipTap
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## MS Blog
+# This project is a fully-featured blog application with a backend created using Node.js, Express, and MongoDB, and a frontend created using React and Redux. The application supports user authentication, blog creation, comments, and likes.
 
-### `yarn test`
+# Features
+User authentication and authorization
+Create, read, update, and delete blogs
+Comment on blogs
+Like and unlike blogs
+Responsive user interface with React
+Rich text editing with CKEditor and TipTap
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Technologies
+Backend
+Node.js
+Express.js
+MongoDB
+Mongoose
+JWT for authentication
+Swagger for API documentation
+Frontend
+React
+Redux Toolkit
+Material-UI
+Form management and validation with Formik and Yup
+Rich text editing with CKEditor and TipTap
 
-### `yarn build`
+![image](https://github.com/Mfeyza/JMS_Blog/assets/144602340/ef514b84-9168-4623-a4b6-82cbc844d88d)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](https://github.com/Mfeyza/JMS_Blog/assets/144602340/bc6f357e-5ee4-48cb-826a-40e0338d500e)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![image](https://github.com/Mfeyza/JMS_Blog/assets/144602340/1938a2e2-e337-440e-977b-cb27a95d83c7)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
