@@ -1,5 +1,5 @@
 # JMS blog
-# live : https://blog-app-beryl-xi.vercel.app/blogs
+# live : https://jms-blog.vercel.app/
 
 ## Bu proje, Node.js, Express ve MongoDB kullanılarak oluşturulmuş bir backend ve React ve Redux kullanılarak oluşturulmuş bir frontend ile tam özellikli bir blog uygulamasıdır. Uygulama, kullanıcı kimlik doğrulaması, blog oluşturma, yorumlar ve beğeniler gibi özellikleri destekler.
 
