@@ -1,58 +1,91 @@
-# JMS blog
-# live : https://jms-blog.vercel.app/
+# JMS Blog
 
-## Bu proje, Node.js, Express ve MongoDB kullanılarak oluşturulmuş bir backend ve React ve Redux kullanılarak oluşturulmuş bir frontend ile tam özellikli bir blog uygulamasıdır. Uygulama, kullanıcı kimlik doğrulaması, blog oluşturma, yorumlar ve beğeniler gibi özellikleri destekler.
+**Live Link:** [JMS Blog](https://jms-blog.vercel.app/)
 
-## Özellikler
-## Kullanıcı kimlik doğrulaması ve yetkilendirme
-## Blog oluşturma, okuma, güncelleme ve silme
-## Bloglara yorum yapma
-## Blogları beğenme ve beğenmeme
-## React ile duyarlı kullanıcı arayüzü
-## CKEditor ve TipTap ile zengin metin düzenleme
+## Description
+This project is a fully-featured blog application with a backend created using Node.js, Express, and MongoDB, and a frontend created using React and Redux. The application supports user authentication, blog creation, comments, and likes.
 
-## Teknolojiler
-## Backend
-Node.js
-Express.js
-MongoDB
-Mongoose
-Kimlik doğrulama için JWT
-API dokümantasyonu için Swagger
+## Features
+- **User Authentication and Authorization:** Secure user registration and login functionality using JWT.
+- **Blog Management:** Create, read, update, and delete blogs.
+- **Commenting:** Users can comment on blogs.
+- **Likes:** Users can like and unlike blogs.
+- **Responsive UI:** A responsive user interface built with React and Material-UI.
+- **Rich Text Editing:** Utilizes CKEditor and TipTap for rich text editing capabilities.
 
-## Frontend
-React
-Redux Toolkit
-Material-UI
-Formik ve Yup ile form yönetimi ve doğrulama
-Zengin metin düzenleme için CKEditor ve TipTap
+## Technologies
 
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT for authentication
+- Swagger for API documentation
 
-## MS Blog
-# This project is a fully-featured blog application with a backend created using Node.js, Express, and MongoDB, and a frontend created using React and Redux. The application supports user authentication, blog creation, comments, and likes.
+### Frontend
+- React
+- Redux Toolkit
+- Material-UI
+- Formik and Yup for form management and validation
+- CKEditor and TipTap for rich text editing
 
-# Features
-User authentication and authorization
-Create, read, update, and delete blogs
-Comment on blogs
-Like and unlike blogs
-Responsive user interface with React
-Rich text editing with CKEditor and TipTap
+## Project Structure
+````
+.
+├── public
+├── src
+│ ├── app
+│ │ └── store.jsx
+│ ├── assets
+│ ├── components
+│ │ ├── Advic.jsx
+│ │ ├── Blog.jsx
+│ │ ├── Categories.jsx
+│ │ ├── CommentAll.jsx
+│ │ ├── CommentCard.jsx
+│ │ ├── CommentDrawer.jsx
+│ │ ├── EditBlogModal.jsx
+│ │ ├── EditProfileModal.jsx
+│ │ ├── Footer.jsx
+│ │ ├── LoginForm.jsx
+│ │ ├── Navbar.jsx
+│ │ ├── RegisterForm.jsx
+│ │ ├── Top.jsx
+│ ├── features
+│ │ ├── authSlice.jsx
+│ │ ├── blogSlice.jsx
+│ │ ├── categorySlice.jsx
+│ ├── helper
+│ │ ├── data.js
+│ │ ├── methods.js
+│ ├── hooks
+│ │ ├── useBlog.jsx
+│ ├── pages
+│ │ ├── BlogDetails.jsx
+│ │ ├── Home.jsx
+│ │ ├── Login.jsx
+│ │ ├── NewBlog.jsx
+│ │ ├── OurStory.jsx
+│ │ ├── Profile.jsx
+│ │ ├── Register.jsx
+│ ├── router
+│ │ ├── AppRouter.jsx
+│ │ ├── PrivateRouter.jsx
+│ ├── thunks
+│ │ ├── authThunk.jsx
+│ │ ├── blogThunk.jsx
+│ │ ├── categoryThunk.jsx
+│ │ ├── commentThunk.jsx
+│ ├── App.js
+│ ├── index.css
+│ ├── index.js
+│ ├── .env
+│ ├── .gitignore
+│ ├── README.md
+└── package-lock.json
+````
 
-# Technologies
-Backend
-Node.js
-Express.js
-MongoDB
-Mongoose
-JWT for authentication
-Swagger for API documentation
-Frontend
-React
-Redux Toolkit
-Material-UI
-Form management and validation with Formik and Yup
-Rich text editing with CKEditor and TipTap
 
 ![image](https://github.com/Mfeyza/JMS_Blog/assets/144602340/ef514b84-9168-4623-a4b6-82cbc844d88d)
 
