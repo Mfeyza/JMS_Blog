@@ -145,7 +145,7 @@ function Navbar() {
     if (user && page.name === "Our Story") {
       navigate(page.path);
     } else if (!user && page.name === "Get Started") {
-      if (location.pathname === "/Login") {
+      if (location.pathname === "/") {
         navigate("/blogs");
         return;
       }
