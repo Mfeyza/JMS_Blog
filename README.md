@@ -85,7 +85,9 @@ This project is a fully-featured blog application with a backend created using N
 │ ├── README.md
 └── package-lock.json
 ````
-
+<div> 
+   <img src="./public/blog.gif">
+</div>
 
 ![image](https://github.com/Mfeyza/JMS_Blog/assets/144602340/ef514b84-9168-4623-a4b6-82cbc844d88d)
 
