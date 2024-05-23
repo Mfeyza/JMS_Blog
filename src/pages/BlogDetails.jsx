@@ -133,7 +133,7 @@ const BlogDetails = () => {
                 }}
               />
               <CardContent>
-                <Stack flexDirection={"row"} alignItems={"center"}>
+                <Stack flexDirection={"row"} alignItems={"center"} sx={{mb:3,mt:3}}>
                   <Typography variant="h4" component="div">
                     {title}
                   </Typography>
@@ -188,7 +188,11 @@ const BlogDetails = () => {
                   )}
                 </Stack>
                 <Stack flexDirection={"row"} gap={2} alignItems={"center"}>
-                  <Avatar>{userId?.firstName.substring(0, 1)}</Avatar>
+                  <Avatar src={userId?.image}>
+                    {!userId?.image && userId?.firstName
+                      ? userId.firstName.substring(0, 1)
+                      : null}
+                  </Avatar>
                   <Typography>
                     {userId?.firstName} {userId?.lastName}
                   </Typography>

@@ -41,6 +41,7 @@ export default function ImgMediaCard({ item, isProfile }) {
       })
     );
   };
+
   React.useEffect(() => {
     const blogs = sessionStorage.getItem("savedBlogs");
     setSave(blogs && JSON.parse(blogs)?.find((x) => x._id === item._id));

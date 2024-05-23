@@ -13,7 +13,7 @@ import { Avatar, Box, Stack } from "@mui/material";
 export default function MediaCard({ item }) {
   const dispatch = useDispatch();
   const { _id, comment, userId, updatedAt } = item || {};
-  const { firstName, lastName, username } = userId || {};
+  const { firstName, lastName,image } = userId || {};
   const blogUserId = useSelector((state) => state.auth._id);
   const params = useParams();
   const { id } = params || {};
@@ -21,16 +21,17 @@ export default function MediaCard({ item }) {
   const dateString = new Date(updatedAt).toLocaleDateString("tr-TR");
   const handleDeleteComment = () => {
     dispatch(deleteComment({ _id, blogId: id }));
-    console.log(_id);
+   
   };
-//   const handleEditComment=()=>{
-//     dispatch(putComment({_id,blogId: id, values}))
-//   }
 
   return (
     <Card sx={{ maxWidth: 345,  mt:3 , marginLeft:2, border:"none"}}>
       <Box sx={{display:"flex",alignItems:"center",gap:1}}>
-      <Avatar>{firstName.substring(0,1)}</Avatar>
+      <Avatar src={image}>
+                    {!image && firstName
+                      ? firstName.substring(0, 1)
+                      : null}
+                  </Avatar>
       <Typography  variant="h6">
         {firstName} {lastName}
       </Typography>

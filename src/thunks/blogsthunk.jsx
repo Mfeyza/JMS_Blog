@@ -159,8 +159,9 @@ export const getMyBlogs = createAsyncThunk(
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}blogs?author=${id}`
       );
-
+      console.log(response)
       return response;
+    
     } catch (error) {
       return rejectWithValue("error");
     }

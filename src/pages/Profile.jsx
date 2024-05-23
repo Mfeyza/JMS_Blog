@@ -22,9 +22,11 @@ const Profile = () => {
   const [selectedBlog, setSelectedBlog] = useState([]);
   useEffect(() => {
     dispatch(getMyBlogs(blogUserId));
+    console.log(blogUserId)
     const blogs = sessionStorage.getItem("savedBlogs");
     setSelectedBlog(blogs ? JSON.parse(blogs) : []);
   }, [dispatch]);
+  console.log(blog)
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -99,8 +101,10 @@ const Profile = () => {
           {/* {skeleton()} */}
 
           {blog?.blogs?.map((item) => {
+            console.log(item.userId)
             return (
-              item.userId === blogUserId && (
+              
+              item.userId._id === blogUserId && (
                 <Blog item={item} isProfile={true} />
               )
             );
