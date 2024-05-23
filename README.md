@@ -99,7 +99,7 @@ This project is a fully-featured blog application with a backend created using N
 To run the application on your local machine, follow these steps:
 
 1. Clone the project to your computer:
-   git clone https://github.com/yourusername/blog-app.git
+   git clone https://github.com/Mfeyza/JMS_Blog.git
 
 2. Open your terminal and navigate to the project directory:
    cd blog-app
