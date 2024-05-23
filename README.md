@@ -94,6 +94,25 @@ This project is a fully-featured blog application with a backend created using N
 ![image](https://github.com/Mfeyza/JMS_Blog/assets/144602340/1938a2e2-e337-440e-977b-cb27a95d83c7)
 
 
+## Getting Started
+
+To run the application on your local machine, follow these steps:
+
+1. Clone the project to your computer:
+   git clone https://github.com/yourusername/blog-app.git
+
+2. Open your terminal and navigate to the project directory:
+   cd blog-app
+
+3. Install the dependencies:
+   npm install
+
+4. Start the application:
+   npm start
+
+5. Open your web browser and visit http://localhost:3000 to explore the JMS Blog.
+   
+
 
 
 
