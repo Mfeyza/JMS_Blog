@@ -18,14 +18,15 @@ const Home = () => {
     dispatch(getBlogs({}))
   },[dispatch])
   return (
-    <Container  sx={{ backgroundColor: "black" , minWidth:"100%"}}>
+    <Container className="home" sx={{ backgroundColor: "black" , minWidth:"100%",height:"100vh"}}>
     <Stack 
+    display={"flex"}
       justifyContent={"space-between"}
       flexDirection={"row"}
       color={"white"}
       sx={{ backgroundColor: "black" }}
-      minHeight={"100vh"}
-      flexWrap={"wrap"}
+      height={"100vh"}
+      
     >
       <Box
         sx={{
@@ -35,7 +36,7 @@ const Home = () => {
           flexDirection: "column",
           gap: "2rem",
           marginBottom: "3rem",
-          flex: 1,
+          // flex: 1,
         }}
       >
         <Typography variant="h2">Fuel Your Curiosity.</Typography>
@@ -47,9 +48,9 @@ const Home = () => {
           Let's Rock and Roll!
         </Button>
       </Box>
-      <Box flex={1} display={"flex"} justifyContent={"center"}>
+      
         <img src={img1} />
-      </Box>
+      
     </Stack>
     {/* <Grid container>
       

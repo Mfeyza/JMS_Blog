@@ -15,7 +15,7 @@ const Register = () => {
 const dispatch=useDispatch()
 const navigate = useNavigate();
   return (
-    <Container maxWidth="100%" sx={{backgroundColor:"black"}}>
+    <Container maxWidth="100%" sx={{backgroundColor:"black",overflow:"hidden"}}>
       
 
         <Grid >

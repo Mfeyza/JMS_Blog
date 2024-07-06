@@ -11,6 +11,9 @@
      
 
 }
+.home{
+  overflow: hidden;
+}
 Button{
     text-transform: none !important;
     
@@ -61,12 +64,7 @@ Button{
   }
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+
 
 @keyframes blinkAnimation {
   0% { opacity: 1; color: #3cb97f; }

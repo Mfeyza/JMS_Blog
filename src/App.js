@@ -4,7 +4,7 @@ import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
-    <Stack minHeight={"100vh"} maxWidth={"100%"}>
+    <Stack minHeight={"100vh"} width={"100%"} className="stack">
      
       <AppRouter/>
 

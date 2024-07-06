@@ -44,9 +44,11 @@ export default function Login() {
       sx={{ backgroundColor: "black" }}
       minHeight={"100vh"}
       flexWrap={"wrap"}
+      overflow={"hidden"}
+
     >
       <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="xs" flex={1}>
+        <Container component="main" maxWidth="xs" >
           <CssBaseline />
           <Box
             sx={{
