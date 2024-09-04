@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const OurStory = () => {
   const user = useSelector((state) => state.auth.user);
   return (
-    <Grid container >
+    <Grid container className="our-story" >
       <Grid item md={6} sx={{padding:"2rem", bgcolor: user ? "white" : "black"}}>
         <Card
        

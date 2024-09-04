@@ -18,14 +18,15 @@ const Home = () => {
     dispatch(getBlogs({}))
   },[dispatch])
   return (
-    <Container className="home" sx={{ backgroundColor: "black" , minWidth:"100%",height:"100vh"}}>
+   
     <Stack 
+    className="home"
     display={"flex"}
       justifyContent={"space-between"}
       flexDirection={"row"}
       color={"white"}
       sx={{ backgroundColor: "black" }}
-      height={"100vh"}
+     
       
     >
       <Box
@@ -48,24 +49,14 @@ const Home = () => {
           Let's Rock and Roll!
         </Button>
       </Box>
-      
-        <img src={img1} />
+      <Box className="imgContainer">
+      <img src={img1} />
+      </Box>
+       
       
     </Stack>
-    {/* <Grid container>
-      
-      <Grid item md={9} xs={12}>
-    {blog?.blogs?.map((item) => {
-      console.log(blog?.blogs)
-            return <Blog item={item} isProfile={true} />
-             
-           
-          })}
-          </Grid>
-          
-
-    </Grid> */}
-    </Container>
+  
+  
   );
 };
 

@@ -13,6 +13,17 @@
 }
 .home{
   overflow: hidden;
+ padding: 3rem;
+ display: flex;
+ flex: 1;
+}
+.our-story{
+ display: flex;
+ flex: 1;
+}
+.imgContainer{
+  display: flex;
+ flex: 1;
 }
 Button{
     text-transform: none !important;
